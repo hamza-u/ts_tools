@@ -1,5 +1,5 @@
 ## Introduction
-This tools validates time interval after which IDR frames are present in MPEG-TS files with H.264 video.
+This tools validates time interval between IDR frames in MPEG-TS files with H.264 video.
 
 ## Building
 Run `build.sh` script on Linux systems.

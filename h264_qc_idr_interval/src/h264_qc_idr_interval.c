@@ -201,6 +201,12 @@ int GetNextIDRPts (uint8_t *buf, int buf_size, int vid_pid, uint64_t *video_pts,
             if(ts_get_unitstart(ts_buf))// && H264CheckAccessUnitDelim(pes_payload(pes), (int)((ts_buf + TS_SIZE) - pes)))
             {
                 pts_val = pes_get_pts(pes);
+                
+                if(found_unit_start && !found_f_type)
+                {
+                    fprintf (stderr, "Couldnot find frame type for last frame cur_pts : %llu.\n", pts_val);
+                    exit (1);
+                }
 
                 pes_store_buf_index_ = 0;
                 ret_val = GetPesData(ts_buf, pes_store_buf_, pes_store_buf_index_);

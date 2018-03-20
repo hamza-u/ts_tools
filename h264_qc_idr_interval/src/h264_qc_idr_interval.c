@@ -301,7 +301,7 @@ int main (int argc, char **argv)
                 {
                     if (ret == VIDF_TYPE_IDR)
                     {
-                        printf ("==Got idr:%d %lu\n", ret, video_pts);
+                        printf ("==Got idr:%d %lu %ld\n", ret, video_pts, ftell(inp_file) + used_size);
                         last_idr_pts = video_pts;
                     }
 

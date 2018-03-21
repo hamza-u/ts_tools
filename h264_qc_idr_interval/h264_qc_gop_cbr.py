@@ -21,12 +21,14 @@ if len (sys.argv) != 5:
     print USAGE %sys.argv[0]
     sys.exit(50)
 
+CWD      = os.path.dirname (sys.argv[0])
 INP_FILE = sys.argv[1]
 VID_PID = int(sys.argv[2])
 MAX_IDR_INTERVAL = int(sys.argv[3])
 MAX_IDR_BYTE_POSITION = float(sys.argv[4]) * 2 / 8 # 2 seconds allowed.
 
-exit_code,stdout,stderr = run_shell_command("./h264_qc_idr_interval '%s' %d %d" %(INP_FILE, VID_PID, MAX_IDR_INTERVAL))
+BIN_PATH = os.path.join (CWD, "./h264_qc_idr_interval")
+exit_code,stdout,stderr = run_shell_command("'%s' '%s' %d %d" %(BIN_PATH, INP_FILE, VID_PID, MAX_IDR_INTERVAL))
 if exit_code != 0:
     print "h264_qc_idr_interval failed with exit code %d" %exit_code
     sys.stderr.write(stderr+"\n")
